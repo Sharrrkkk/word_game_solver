@@ -1,10 +1,12 @@
 import cli
 
 
+__all__ = ["main"]
+
+
 def main()-> None:
-    cli.main()
+    cli.run_cli()
 
 
 if __name__ == "__main__":
-
     main()

@@ -1,1 +1,1 @@
-README
+English word set generator, based on input data, using the anagram technique and an English word file.

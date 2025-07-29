@@ -62,15 +62,24 @@ def all_paths(get_path: str)-> Path:
 class Logs:
     def __init__():
         pass
-
+    
+    @staticmethod
     def start_of_log():
         """
         """
-        file_logs_path = all_paths("logs") / "logs"
+        file_logs_path = all_paths("logs") / "log"
         with open(file_logs_path, "w") as file_logs:
             file_logs.write(f"{username()} {date_bash()}")
             file_logs.write(f"Starting CLI application...\n")
-            file_logs.write(f"Console Cleaning: {True if (clean_console() == 0) else False}\n")
+            file_logs.write(f"Console Cleaning: True")
+
+    @staticmethod
+    def end_of_log():
+        """
+        """
+        file_logs_path = all_paths("logs") / "log"
+        with open(file_logs_path, "a") as file_logs:
+            file_logs.write(f"End CLI application...\n")
 
 
 if __name__ == "__main__":

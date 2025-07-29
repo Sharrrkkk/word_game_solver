@@ -1,7 +1,7 @@
 __pycache__/
 .vscode/
-logs/
 tmp/
+logs/
 *.log
 *.env
 *.tmp
