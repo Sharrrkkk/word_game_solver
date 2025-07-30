@@ -1,11 +1,11 @@
-from typing import Tuple
+from typing import Tuple, List
 
 
 import core
 import utils
 
 
-__all__ = ["run_cli"]
+__all__: List[str] = ["run_cli"]
 
 
 def input_interface()-> Tuple[int, str]:
@@ -19,7 +19,7 @@ def input_interface()-> Tuple[int, str]:
 
 
 def output_interface(result: int)-> str:
-    matches = result if (result!='') else ('No matches')
+    matches: str = result if (result!='') else ('No matches')
     print(f"Number of possible words: {len(result.split())}")
     print(f"Possible words: {matches}\n")
     return matches
@@ -39,16 +39,16 @@ def run_cli()-> None:
         print(f"View history:...............2")
         print(f"Delete history:.............3")
         print(f"Exit the CLI application:...4")
-        option = input("select an option: ")
+        option: str = input("Select an option: ")
 
-        matches = ""
+        matches: str = ""
         match option:
             case "1":
                 word_length: int
                 available_letters: str
                 word_length, available_letters = input_interface()
                 result: str = core.english_word_set_generator(word_length, available_letters)
-                matches = output_interface(result)
+                matches: str = output_interface(result)
             case "2":
                 print(f"History viewed\n")
             case "3":

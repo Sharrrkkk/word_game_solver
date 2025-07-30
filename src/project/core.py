@@ -4,7 +4,7 @@ import utils
 import collections
 
 
-__all__ = ["extract_transform_load", "data_analysis", "english_word_set_generator"]
+__all__: List[str] = ["extract_transform_load", "data_analysis", "english_word_set_generator"]
 
 
 def extract_transform_load(filename: str, permision: str)-> Dict[str, List[str]]:

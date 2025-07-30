@@ -1,7 +1,8 @@
+from typing import List
 import cli
 
 
-__all__ = ["main"]
+__all__: List[str] = ["main"]
 
 
 def main()-> None:
