@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Union, Tuple
 import os
 import pathlib
 from pathlib import Path
@@ -11,7 +11,7 @@ __all__: List[str] = ["clean_console", "username_linux", "date_bash", "all_paths
 def clean_console()-> int:
     """
     """
-    result = 1
+    result: int = 1
     if os.name == "posix":
         os.system("clear")
         result = 0
@@ -34,7 +34,7 @@ def datetime_bash()-> str:
                                         text=True, shell=True)
 
 
-def all_paths(get_path: str)-> Path:
+def all_paths(get_path: str)-> Union[Path,str]:
     """
     """
     project_base_path: Path = pathlib.Path.home() / "Desktop" / "English_word_set_generator"
@@ -45,6 +45,7 @@ def all_paths(get_path: str)-> Path:
     src_path: Path = project_base_path / "src"
     project_path: Path = src_path / "project"
     project_data_path: Path = project_path / "project_data" / "words.txt"
+    help_path = project_base_path / "help"
 
     paths: Dict[str, Path] = {"base":project_base_path,
              "config":config_path, 
@@ -54,20 +55,18 @@ def all_paths(get_path: str)-> Path:
              "src":src_path, 
              "project":project_path, 
              "projectdata":project_data_path, 
+             "help":help_path
              }
     
     return paths.get(get_path, "Incorrect path")
 
 
 class Logs:
-    def __init__():
-        pass
-    
     @staticmethod
-    def start_of_log():
+    def start_of_log()-> None:
         """
         """
-        file_logs_path = all_paths("logs") / "log"
+        file_logs_path: Path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"{username()}")
             file_logs.write(f"{datetime_bash()}")
@@ -75,40 +74,43 @@ class Logs:
             file_logs.write(f"Console Cleaning: True\n")
 
     @staticmethod
-    def records_log(option: int, result: str):
+    def history_log(option: int, result: str)-> None:
         """
         """
-        records = ""
-        file_logs_path = all_paths("logs") / "log"
+        record: str = ""
+        file_logs_path: Path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             match option:
+                case "0":
+                    record = f"Revised help.\n"
                 case "1":
-                    records = f"{result}\n"
+                    record = f"{result}\n"
                 case "2":
-                    records = f"History viewed.\n"
+                    record = f"History viewed.\n"
                 case "3":
-                    records = f"History deleted.\n"
+                    record = f"History deleted.\n"
                 case "4":
-                    records = f"Exit...\n"
+                    record = f"Exit...\n"
                 case _:
-                    records = f"Invalid option.\n"
-            file_logs.write(f"{records}")
+                    record = f"Invalid option.\n"
+            file_logs.write(f"{record}")
 
     @staticmethod
-    def end_of_log():
+    def end_of_log()-> None:
         """
         """
-        file_logs_path = all_paths("logs") / "log"
+        file_logs_path: Path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"End CLI application...\n\n")
 
 
-
-class User_History:
+class UserHistory:
     @staticmethod
-    def save_history(word_length, available_letters, size, matches):
-        user_history_file_path = all_paths("history") / "history"
+    def save_history(word_length: int, available_letters: str, size: int, matches: str)-> None:
+        user_history_file_path: Path = all_paths("history") / "history"
         with open(user_history_file_path, "a") as file_history:
+            date:str
+            hours:str
             date, hours = datetime_bash().split()
             file_history.write(f"{username()}")
             file_history.write(f"Date: {date} Hours: {hours}\n")
@@ -118,15 +120,40 @@ class User_History:
             file_history.write(f"List of matches: {matches}\n\n")
 
     @staticmethod
-    def read_history():
-        user_history_file_path = all_paths("history") / "history"
-        subprocess.run(["nano", user_history_file_path])
+    def read_history()-> None:
+        user_history_file_path: Path = all_paths("history") / "history"
+        subprocess.run(["nano", "-v", user_history_file_path])
 
     @staticmethod
-    def delete_history():
-        user_history_file_path = all_paths("history") / "history"
+    def delete_history()-> None:
+        user_history_file_path: Path = all_paths("history") / "history"
         with open(user_history_file_path, "w") as file_history:
             pass
+
+
+class Parsing:
+    @staticmethod
+    def numbers(number: str)-> Tuple[int | str, bool]:
+        cache: str = number.strip(" \n")
+        if len(cache) == 0:
+             return (number, False)
+        for digit in cache:
+            if not digit.isdigit():
+                return (number, False)
+        return (int(cache), True)
+
+    @staticmethod
+    def string(string: str)-> Tuple[str, bool]:
+        cache: str = ''.join(string.strip(" \n").split()).lower()
+        for char in cache:
+            if not char.isalpha():
+                return (string, False)
+        return (cache, True)
+    
+
+def user_help()-> None:
+    help_file = all_paths("help") / "help"
+    subprocess.run(["nano", "-v", help_file])
 
 
 if __name__ == "__main__":

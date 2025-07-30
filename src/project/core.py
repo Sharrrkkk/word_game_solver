@@ -35,7 +35,7 @@ def data_analysis(file: Dict[str, List[str]], data: Tuple[int, str])-> str:
     return result
 
 
-def english_word_set_generator(n, letters):
+def english_word_set_generator(n: int, letters: str)-> str:
     etl: Dict[str, int] = extract_transform_load(utils.all_paths("projectdata"), "r")
     result: str = data_analysis(etl, (n, letters))
     return result
