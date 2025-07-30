@@ -27,7 +27,7 @@ def username()-> str:
     return subprocess.check_output("whoami", text=True)
 
 
-def date_bash()-> str:
+def datetime_bash()-> str:
     """
     """
     return subprocess.check_output('echo "$(date "+%m-%d-%y %H:%M:%S")"',
@@ -39,7 +39,7 @@ def all_paths(get_path: str)-> Path:
     """
     project_base_path: Path = pathlib.Path.home() / "Desktop" / "English_word_set_generator"
     config_path: Path = project_base_path / "config"
-    data_path: Path = project_base_path / "data"
+    user_history_path: Path = project_base_path / "user_history"
     logs_path: Path = project_base_path / "logs"
     scripts_path: Path = project_base_path / "scripts"
     src_path: Path = project_base_path / "src"
@@ -48,7 +48,7 @@ def all_paths(get_path: str)-> Path:
 
     paths: Dict[str, Path] = {"base":project_base_path,
              "config":config_path, 
-             "data":data_path, 
+             "history":user_history_path, 
              "logs":logs_path, 
              "scripts":scripts_path, 
              "src":src_path, 
@@ -70,7 +70,7 @@ class Logs:
         file_logs_path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"{username()}")
-            file_logs.write(f"{date_bash()}")
+            file_logs.write(f"{datetime_bash()}")
             file_logs.write(f"Starting CLI application...\n")
             file_logs.write(f"Console Cleaning: True\n")
 
@@ -101,6 +101,32 @@ class Logs:
         file_logs_path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"End CLI application...\n\n")
+
+
+
+class User_History:
+    @staticmethod
+    def save_history(word_length, available_letters, size, matches):
+        user_history_file_path = all_paths("history") / "history"
+        with open(user_history_file_path, "a") as file_history:
+            date, hours = datetime_bash().split()
+            file_history.write(f"{username()}")
+            file_history.write(f"Date: {date} Hours: {hours}\n")
+            file_history.write(f"Desired length: {word_length}\n")
+            file_history.write(f"Set of letters: {available_letters}\n")
+            file_history.write(f"Matches found: {size}\n")
+            file_history.write(f"List of matches: {matches}\n\n")
+
+    @staticmethod
+    def read_history():
+        user_history_file_path = all_paths("history") / "history"
+        subprocess.run(["nano", user_history_file_path])
+
+    @staticmethod
+    def delete_history():
+        user_history_file_path = all_paths("history") / "history"
+        with open(user_history_file_path, "w") as file_history:
+            pass
 
 
 if __name__ == "__main__":

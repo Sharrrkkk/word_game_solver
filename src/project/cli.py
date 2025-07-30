@@ -18,18 +18,20 @@ def input_interface()-> Tuple[int, str]:
     return (word_length, available_letters)
 
 
-def output_interface(result: int)-> str:
+def output_interface(result: int)-> Tuple[str, int]:
+    size = len(result.split())
     matches: str = result if (result!='') else ('No matches')
-    print(f"Number of possible words: {len(result.split())}")
+    print(f"Number of possible words: {size}")
     print(f"Possible words: {matches}\n")
-    return matches
+    return (size, matches)
 
 
 def run_cli()-> None:
 
     utils.clean_console()
 
-    print(f"Welcome: {utils.username()}Date: {utils.date_bash()}")
+    date, hours = utils.datetime_bash().split()
+    print(f"Welcome: {utils.username()}Date: {date} Hours: {hours}\n")
 
     utils.Logs.start_of_log()
 
@@ -48,10 +50,15 @@ def run_cli()-> None:
                 available_letters: str
                 word_length, available_letters = input_interface()
                 result: str = core.english_word_set_generator(word_length, available_letters)
-                matches: str = output_interface(result)
+                size: int
+                matches: str
+                size, matches = output_interface(result)
+                utils.User_History.save_history(word_length, available_letters, size, matches)
             case "2":
+                utils.User_History.read_history()
                 print(f"History viewed\n")
             case "3":
+                utils.User_History.delete_history()
                 print(f"History deleted\n")
             case "4":
                 print(f"Exit...")

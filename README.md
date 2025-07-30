@@ -1,10 +1,10 @@
-English Word Set Generator.
+# **English Word Set Generator.**
 
 Generate valid English word sets based on a specified word length and a set of input characters using anagrams and a file with English words.
 
 ---
 
-Features:
+## **Features:**
 
 - Input a desired word length (e.g., `5`)
 - Provide a set of characters (e.g., `"nyogbsfo"`)
@@ -14,7 +14,7 @@ Features:
 
 ---
 
-Usage:
+## **Usage:**
 
 Run the following command from your terminal (Unix-like systems (Mac, Linux, etc.):
 
@@ -40,7 +40,7 @@ The history consists of all the word length and character set entries entered as
 
 ---
 
-Project structure:
+## **Project structure:**
 
 .
 ├── LICENSE
@@ -70,7 +70,7 @@ Project structure:
 
 ---
 
-Visual example of the CLI application in action:
+## **Visual example of the CLI application in action:**
 
 Welcome: user
 Date: 07-29-25 22:01:06
@@ -97,15 +97,17 @@ Exit...
 
 ---
 
-License:
+## **License:**
 This project is licensed under the MIT License.
 
 ---
 
-Notes:
+## **Notes:**
 
 You can replace words.txt with a word list of your choice. The program filters each line to remove special characters, digits, and spaces, and it normalizes all text to lowercase. Currently, it only supports plain alphabetic characters (A–Z/a–z), without accents or symbols.
 
 This project is 100% educational.
+
+This project is geared toward Linux/Unix systems. I'll be adding a Windows-compatible version soon.
 
 ---
