@@ -1,8 +1,8 @@
 from typing import Tuple, List
 
 
-import core
-import utils
+from . import core
+from . import utils
 
 
 __all__: List[str] = ["run_cli"]
@@ -24,8 +24,6 @@ def output_interface(result: int)-> Tuple[str, int]:
     print(f"Number of possible words: {size}")
     print(f"Possible words: {matches}\n")
     return (size, matches)
-
-
 
 
 def generate_words()-> str:
@@ -105,4 +103,4 @@ def run_cli()-> None:
 
 
 if __name__ == "__main__":
-    pass
+    run_cli()

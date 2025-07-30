@@ -1,6 +1,6 @@
 from typing import List, Dict, Set, Tuple
 import itertools
-import utils
+from . import utils
 import collections
 
 

@@ -1,12 +1,12 @@
 from typing import List
-import cli
+from src import project
 
 
 __all__: List[str] = ["main"]
 
 
 def main()-> None:
-    cli.run_cli()
+    project.cli.run_cli()
 
 
 if __name__ == "__main__":
