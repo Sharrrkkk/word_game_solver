@@ -68,10 +68,31 @@ class Logs:
         """
         """
         file_logs_path = all_paths("logs") / "log"
-        with open(file_logs_path, "w") as file_logs:
-            file_logs.write(f"{username()} {date_bash()}")
+        with open(file_logs_path, "a") as file_logs:
+            file_logs.write(f"{username()}")
+            file_logs.write(f"{date_bash()}")
             file_logs.write(f"Starting CLI application...\n")
-            file_logs.write(f"Console Cleaning: True")
+            file_logs.write(f"Console Cleaning: True\n")
+
+    @staticmethod
+    def records_log(option: int, result: str):
+        """
+        """
+        records = ""
+        file_logs_path = all_paths("logs") / "log"
+        with open(file_logs_path, "a") as file_logs:
+            match option:
+                case "1":
+                    records = f"{result}\n"
+                case "2":
+                    records = f"History viewed.\n"
+                case "3":
+                    records = f"History deleted.\n"
+                case "4":
+                    records = f"Exit...\n"
+                case _:
+                    records = f"Invalid option.\n"
+            file_logs.write(f"{records}")
 
     @staticmethod
     def end_of_log():
@@ -79,7 +100,7 @@ class Logs:
         """
         file_logs_path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
-            file_logs.write(f"End CLI application...\n")
+            file_logs.write(f"End CLI application...\n\n")
 
 
 if __name__ == "__main__":
