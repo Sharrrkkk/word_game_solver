@@ -18,7 +18,7 @@ def input_interface()-> Tuple[str, str]:
     return (word_length, available_letters)
 
 
-def output_interface(result: int)-> Tuple[str, int]:
+def output_interface(result: str)-> Tuple[int, str]:
     size: int = len(result.split())
     matches: str = result if (result!='') else ('No matches')
     print(f"Number of possible words: {size}")
@@ -31,7 +31,7 @@ def generate_words()-> str:
     available_letters: str
     word_length, available_letters = input_interface()
 
-    parsing_word_length: int | str
+    parsing_word_length: str
     status_length: bool
     parsing_word_length, status_length = utils.Parsing.numbers(word_length)
 
@@ -39,19 +39,19 @@ def generate_words()-> str:
     status_letters: bool
     parsing_available_letters, status_letters = utils.Parsing.string(available_letters)
 
-    matches: str = ""
     status: List[bool] = [status_length, status_letters]
+    matches: str
     if sum(status) == 2:
-        result: str = core.english_word_set_generator(parsing_word_length, parsing_available_letters)
+        int_word_length = int(parsing_word_length)
+        result: str = core.english_word_set_generator(int_word_length, parsing_available_letters)
         size: int
-        matches: str
         size, matches = output_interface(result)
         utils.UserHistory.save_history(word_length, available_letters, size, matches)
     else:
         incorrect_entries: str = "Both entries are incorrect, please read the help."
         incorrect_length: str = "The length entered is incorrect, please read the help."
         incorrect_letters: str = "the letter set is incorrect, please read the help."
-        matches: str = f"{incorrect_entries if (sum(status)==0) else(incorrect_length) if(status[0]==0) else(incorrect_letters)}"
+        matches = f"{incorrect_entries if (sum(status)==0) else(incorrect_length) if(status[0]==0) else(incorrect_letters)}"
         print(matches + "\n")
 
     return matches

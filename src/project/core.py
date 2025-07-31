@@ -2,12 +2,13 @@ from typing import List, Dict, Set, Tuple
 import itertools
 from . import utils
 import collections
+from pathlib import Path
 
 
 __all__: List[str] = ["extract_transform_load", "data_analysis", "english_word_set_generator"]
 
 
-def extract_transform_load(filename: str, permision: str)-> Dict[str, List[str]]:
+def extract_transform_load(filename: Path, permision: str)-> Dict[str, List[str]]:
     filewords: Dict[str, List[str]] = collections.defaultdict(list)
     with open(filename, permision) as file:
         for line in file:
@@ -25,8 +26,8 @@ def data_analysis(file: Dict[str, List[str]], data: Tuple[int, str])-> str:
     for combination in itertools.combinations(word, n):
         combinations.add(''.join(sorted(combination)))
     words_list: List[List[str]] = []
-    for combination in combinations:
-        words: List = file.get(combination,[])
+    for combination_str in combinations:
+        words: List = file.get(combination_str,[])
         if len(words) > 0:
             words_list.append(words)
 
@@ -36,7 +37,7 @@ def data_analysis(file: Dict[str, List[str]], data: Tuple[int, str])-> str:
 
 
 def english_word_set_generator(n: int, letters: str)-> str:
-    etl: Dict[str, int] = extract_transform_load(utils.all_paths("projectdata"), "r")
+    etl: Dict[str, List[str]] = extract_transform_load(utils.all_paths("projectdata"), "r")
     result: str = data_analysis(etl, (n, letters))
     return result
 

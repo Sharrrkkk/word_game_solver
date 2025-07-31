@@ -34,7 +34,7 @@ def datetime_bash()-> str:
                                         text=True, shell=True)
 
 
-def all_paths(get_path: str)-> Union[Path,str]:
+def all_paths(get_path: str)-> Path:
     """
     """
     project_base_path: Path = pathlib.Path.home() / "Desktop" / "English_word_set_generator"
@@ -58,7 +58,13 @@ def all_paths(get_path: str)-> Union[Path,str]:
              "help":help_path
              }
     
-    return paths.get(get_path, "Incorrect path")
+    try:
+        result = paths[get_path]
+    except:
+        print(f"The key to the dic: {get_path} It is invalid.")
+        raise Exception
+    
+    return result
 
 
 class Logs:
@@ -74,7 +80,7 @@ class Logs:
             file_logs.write(f"Console Cleaning: True\n")
 
     @staticmethod
-    def history_log(option: int, result: str)-> None:
+    def history_log(option: str, result: str)-> None:
         """
         """
         record: str = ""
@@ -106,7 +112,7 @@ class Logs:
 
 class UserHistory:
     @staticmethod
-    def save_history(word_length: int, available_letters: str, size: int, matches: str)-> None:
+    def save_history(word_length: str, available_letters: str, size: int, matches: str)-> None:
         user_history_file_path: Path = all_paths("history") / "history"
         with open(user_history_file_path, "a") as file_history:
             date:str
@@ -133,14 +139,14 @@ class UserHistory:
 
 class Parsing:
     @staticmethod
-    def numbers(number: str)-> Tuple[int | str, bool]:
+    def numbers(number: str)-> Tuple[str, bool]:
         cache: str = number.strip(" \n")
         if len(cache) == 0:
              return (number, False)
         for digit in cache:
             if not digit.isdigit():
                 return (number, False)
-        return (int(cache), True)
+        return (cache, True)
 
     @staticmethod
     def string(string: str)-> Tuple[str, bool]:
