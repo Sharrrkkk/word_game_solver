@@ -1,11 +1,11 @@
-from typing import List, Dict, Union, Tuple
+from typing import List, Dict, Tuple
 import os
 import pathlib
 from pathlib import Path
 import subprocess
 
 
-__all__: List[str] = ["clean_console", "username_linux", "date_bash", "all_paths", "Logs"]
+__all__: List[str] = ["clean_console", "username", "datetime_bash", "all_paths", "Logs"]
 
 
 def clean_console()-> int:
@@ -133,7 +133,7 @@ class UserHistory:
     @staticmethod
     def delete_history()-> None:
         user_history_file_path: Path = all_paths("history") / "history"
-        with open(user_history_file_path, "w") as file_history:
+        with open(user_history_file_path, "w"):
             pass
 
 
