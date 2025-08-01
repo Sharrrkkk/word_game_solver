@@ -27,8 +27,8 @@ def data_analysis(file: Dict[str, List[str]], data: Tuple[int, str])-> str:
         combinations.add(''.join(sorted(combination)))
     words_list: List[List[str]] = []
     for combination_str in combinations:
-        words: List = file.get(combination_str,[])
-        if len(words) > 0:
+        if file[combination_str]:
+            words: List[str] = file[combination_str]
             words_list.append(words)
 
     cache: List[str] = [' '.join(words) for words in words_list]

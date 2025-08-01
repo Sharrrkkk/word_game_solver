@@ -11,7 +11,7 @@ __all__: List[str] = ["run_cli"]
 def input_interface()-> Tuple[str, str]:
     """
     """
-    word_length: str = input(f"\nEnter the length of the word to guess: ")
+    word_length: str = input(f"Enter the length of the word to guess: ")
 
     available_letters: str = input(f"Enter all available letters: ")
 
@@ -61,6 +61,8 @@ def run_cli()-> None:
 
     utils.clean_console()
 
+    print(f"Anagram Generator")
+
     date: str
     hours: str
     date, hours = utils.datetime_bash().split()
@@ -69,6 +71,7 @@ def run_cli()-> None:
     utils.Logs.start_of_log()
 
     while True:
+        print(f"Anagram Generator")
         print(f"Options:")
         print(f"Help:.......................0")
         print(f"Generate words:.............1")
@@ -83,6 +86,7 @@ def run_cli()-> None:
                 utils.user_help()
                 print(f"Revised help\n")
             case "1":
+                print(f"\nAnagram Generator")
                 matches = generate_words()
             case "2":
                 utils.UserHistory.read_history()

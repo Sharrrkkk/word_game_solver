@@ -1,4 +1,4 @@
-# **English Word Set Generator.**
+# **Anagram Generator.**
 
 Generate valid English word sets based on a specified word length and a set of input characters using anagrams and a file with English words.
 
