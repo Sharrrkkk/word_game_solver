@@ -43,7 +43,7 @@ def generate_words()-> str:
     matches: str
     if sum(status) == 2:
         int_word_length = int(parsing_word_length)
-        result: str = core.english_word_set_generator(int_word_length, parsing_available_letters)
+        result: str = core.anagram_generator(int_word_length, parsing_available_letters)
         size: int
         size, matches = output_interface(result)
         utils.UserHistory.save_history(word_length, available_letters, size, matches)
@@ -65,7 +65,7 @@ def run_cli()-> None:
 
     date: str
     hours: str
-    date, hours = utils.datetime_bash().split()
+    date, hours = utils.user_datetime().split()
     print(f"Welcome: {utils.username()}Date: {date} Hours: {hours}\n")
 
     utils.Logs.start_of_log()

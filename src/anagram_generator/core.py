@@ -5,7 +5,7 @@ import collections
 from pathlib import Path
 
 
-__all__: List[str] = ["extract_transform_load", "data_analysis", "english_word_set_generator"]
+__all__: List[str] = ["extract_transform_load", "data_analysis", "anagram_generator"]
 
 
 def extract_transform_load(filename: Path, permision: str)-> Dict[str, List[str]]:
@@ -36,8 +36,8 @@ def data_analysis(file: Dict[str, List[str]], data: Tuple[int, str])-> str:
     return result
 
 
-def english_word_set_generator(n: int, letters: str)-> str:
-    etl: Dict[str, List[str]] = extract_transform_load(utils.all_paths("projectdata"), "r")
+def anagram_generator(n: int, letters: str)-> str:
+    etl: Dict[str, List[str]] = extract_transform_load(utils.all_paths("project_data"), "r")
     result: str = data_analysis(etl, (n, letters))
     return result
 

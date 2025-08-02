@@ -1,12 +1,12 @@
 from typing import List
-from src import project
+from src import anagram_generator
 
 
 __all__: List[str] = ["main"]
 
 
 def main()-> None:
-    project.cli.run_cli()
+    anagram_generator.cli.run_cli()
 
 
 if __name__ == "__main__":

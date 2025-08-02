@@ -3,9 +3,11 @@ import os
 import pathlib
 from pathlib import Path
 import subprocess
+import getpass
+import datetime
 
 
-__all__: List[str] = ["clean_console", "username", "datetime_bash", "all_paths", "Logs"]
+__all__: List[str] = ["clean_console", "username", "user_datetime", "all_paths", "Logs"]
 
 
 def clean_console()-> int:
@@ -24,27 +26,28 @@ def clean_console()-> int:
 def username()-> str:
     """
     """
-    return subprocess.check_output("whoami", text=True)
+    return getpass.getuser() + "\n"
 
 
-def datetime_bash()-> str:
+def user_datetime()-> str:
     """
     """
-    return subprocess.check_output('echo "$(date "+%m-%d-%y %H:%M:%S")"',
-                                        text=True, shell=True)
+    date, time = datetime.datetime.today().__str__().split()
+    result = date + " " + ''.join(time.split(".")[0:-1])
+    return result
 
 
 def all_paths(get_path: str)-> Path:
     """
     """
-    project_base_path: Path = pathlib.Path.home() / "Desktop" / "English_word_set_generator"
+    project_base_path: Path = pathlib.Path.home() / "Desktop" / "anagram_generator"
     config_path: Path = project_base_path / "config"
     user_history_path: Path = project_base_path / "user_history"
     logs_path: Path = project_base_path / "logs"
     scripts_path: Path = project_base_path / "scripts"
     src_path: Path = project_base_path / "src"
-    project_path: Path = src_path / "project"
-    project_data_path: Path = project_path / "project_data" / "words.txt"
+    project_path: Path = src_path / "anagram_generator"
+    project_data_path: Path = project_path / "word_files" / "english_words.txt"
     help_path = project_base_path / "help"
 
     paths: Dict[str, Path] = {"base":project_base_path,
@@ -54,7 +57,7 @@ def all_paths(get_path: str)-> Path:
              "scripts":scripts_path, 
              "src":src_path, 
              "project":project_path, 
-             "projectdata":project_data_path, 
+             "project_data":project_data_path, 
              "help":help_path
              }
     

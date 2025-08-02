@@ -26,7 +26,15 @@ Homepage = "https://github.com/Sharrrkkk/anagram_generator"
 Documentation = "https://github.com/Sharrrkkk/anagram_generator#README.md"
 Repository = "https://github.com/Sharrrkkk/anagram_generator"
 Issues = "https://github.com/Sharrrkkk/anagram_generator/issues"
-Changelog = ""
 
 [project.scripts]
 anagrams = "anagram_generator.cli:run_cli"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+anagram_generator = ["word_files/*"]
