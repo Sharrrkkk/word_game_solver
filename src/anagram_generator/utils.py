@@ -78,7 +78,7 @@ class Logs:
         file_logs_path: Path = all_paths("logs") / "log"
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"{username()}")
-            file_logs.write(f"{datetime_bash()}")
+            file_logs.write(f"{user_datetime()}")
             file_logs.write(f"Starting CLI application...\n")
             file_logs.write(f"Console Cleaning: True\n")
 
@@ -120,7 +120,7 @@ class UserHistory:
         with open(user_history_file_path, "a") as file_history:
             date:str
             hours:str
-            date, hours = datetime_bash().split()
+            date, hours = user_datetime().split()
             file_history.write(f"{username()}")
             file_history.write(f"Date: {date} Hours: {hours}\n")
             file_history.write(f"Desired length: {word_length}\n")
