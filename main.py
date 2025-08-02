@@ -1,8 +1,7 @@
-from typing import List
 from src import anagram_generator
 
 
-__all__: List[str] = ["main"]
+__all__: list[str] = ["main"]
 
 
 def main()-> None:

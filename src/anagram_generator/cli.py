@@ -1,14 +1,11 @@
-from typing import Tuple, List
-
-
 from . import core
 from . import utils
 
 
-__all__: List[str] = ["run_cli"]
+__all__: list[str] = ["run_cli"]
 
 
-def input_interface()-> Tuple[str, str]:
+def input_interface()-> tuple[str, str]:
     """
     """
     word_length: str = input(f"Enter the length of the word to guess: ")
@@ -18,7 +15,7 @@ def input_interface()-> Tuple[str, str]:
     return (word_length, available_letters)
 
 
-def output_interface(result: str)-> Tuple[int, str]:
+def output_interface(result: str)-> tuple[int, str]:
     size: int = len(result.split())
     matches: str = result if (result!='') else ('No matches')
     print(f"Number of possible words: {size}")
@@ -39,7 +36,7 @@ def generate_words()-> str:
     status_letters: bool
     parsing_available_letters, status_letters = utils.Parsing.string(available_letters)
 
-    status: List[bool] = [status_length, status_letters]
+    status: list[bool] = [status_length, status_letters]
     matches: str
     if sum(status) == 2:
         int_word_length = int(parsing_word_length)

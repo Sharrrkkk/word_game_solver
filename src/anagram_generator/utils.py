@@ -1,4 +1,3 @@
-from typing import List, Dict, Tuple
 import os
 import pathlib
 from pathlib import Path
@@ -7,7 +6,7 @@ import getpass
 import datetime
 
 
-__all__: List[str] = ["clean_console", "username", "user_datetime", "all_paths", "Logs"]
+__all__: list[str] = ["clean_console", "username", "user_datetime", "all_paths", "Logs"]
 
 
 def clean_console()-> int:
@@ -32,8 +31,10 @@ def username()-> str:
 def user_datetime()-> str:
     """
     """
+    date: str
+    time: str
     date, time = datetime.datetime.today().__str__().split()
-    result = date + " " + ''.join(time.split(".")[0:-1])
+    result: str = date + " " + ''.join(time.split(".")[0:-1])
     return result
 
 
@@ -46,9 +47,9 @@ def all_paths(get_path: str)-> Path:
     logs_path: Path = project_base_path / "logs"
     scripts_path: Path = project_base_path / "scripts"
     project_data_path: Path = project_base_path / "word_files" / "english_words.txt"
-    help_path = project_base_path / "help"
+    help_path: Path = project_base_path / "help"
 
-    paths: Dict[str, Path] = {"base":project_base_path,
+    paths: dict[str, Path] = {"base":project_base_path,
              "config":config_path, 
              "history":user_history_path, 
              "logs":logs_path, 
@@ -58,7 +59,7 @@ def all_paths(get_path: str)-> Path:
              }
     
     try:
-        result = paths[get_path]
+        result: Path = paths[get_path]
     except:
         print(f"The key to the dic: {get_path} It is invalid.")
         raise Exception
@@ -138,7 +139,7 @@ class UserHistory:
 
 class Parsing:
     @staticmethod
-    def numbers(number: str)-> Tuple[str, bool]:
+    def numbers(number: str)-> tuple[str, bool]:
         cache: str = number.strip(" \n")
         if len(cache) == 0:
              return (number, False)
@@ -148,7 +149,7 @@ class Parsing:
         return (cache, True)
 
     @staticmethod
-    def string(string: str)-> Tuple[str, bool]:
+    def string(string: str)-> tuple[str, bool]:
         cache: str = ''.join(string.strip(" \n").split()).lower()
         for char in cache:
             if not char.isalpha():
@@ -157,7 +158,7 @@ class Parsing:
     
 
 def user_help()-> None:
-    help_file = all_paths("help") / "help"
+    help_file: Path = all_paths("help") / "help"
     subprocess.run(["nano", "-v", help_file])
 
 
