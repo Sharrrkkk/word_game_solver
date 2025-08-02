@@ -1,8 +1,6 @@
 __pycache__/
 .vscode/
 tmp/
-logs/
-*.log
 *.env
 *.tmp
 *.swp
@@ -10,4 +8,4 @@ ideas/
 dist/
 Anagrams*
 testing.py
-s.py
+setup.py

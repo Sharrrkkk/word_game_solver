@@ -37,4 +37,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-anagram_generator = ["word_files/*"]
+anagram_generator = ["word_files/*", "config/*", "help/*", "logs/*", "scripts/*", "user_history/*"]

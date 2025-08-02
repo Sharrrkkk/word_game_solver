@@ -40,14 +40,12 @@ def user_datetime()-> str:
 def all_paths(get_path: str)-> Path:
     """
     """
-    project_base_path: Path = pathlib.Path.home() / "Desktop" / "anagram_generator"
+    project_base_path: Path = pathlib.Path(__file__).resolve().parent
     config_path: Path = project_base_path / "config"
     user_history_path: Path = project_base_path / "user_history"
     logs_path: Path = project_base_path / "logs"
     scripts_path: Path = project_base_path / "scripts"
-    src_path: Path = project_base_path / "src"
-    project_path: Path = src_path / "anagram_generator"
-    project_data_path: Path = project_path / "word_files" / "english_words.txt"
+    project_data_path: Path = project_base_path / "word_files" / "english_words.txt"
     help_path = project_base_path / "help"
 
     paths: Dict[str, Path] = {"base":project_base_path,
@@ -55,8 +53,6 @@ def all_paths(get_path: str)-> Path:
              "history":user_history_path, 
              "logs":logs_path, 
              "scripts":scripts_path, 
-             "src":src_path, 
-             "project":project_path, 
              "project_data":project_data_path, 
              "help":help_path
              }
