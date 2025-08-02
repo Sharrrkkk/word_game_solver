@@ -1,11 +1,13 @@
-# **Anagram Generator.**
+# **Word Game Solver.**
 
-Generate valid English word sets based on a specified word length and a set of input characters using anagrams and a file with English words.
-
+Solve several word puzzles.
+Currently, only the Anagram Generator is implemented.
+This consists of searching for all possible words from a desired length and a set of letters. The possible words are stored in an English word file, and an anagram-based algorithm is used.
 ---
 
 ## **Features:**
 
+# Anagram generator
 - Input a desired word length (e.g., `5`)
 - Provide a set of characters (e.g., `"nyogbsfo"`)
 - Generate all valid English words (e.g., `bongo`, `bongs`, `boons`, etc.)
@@ -17,25 +19,32 @@ Generate valid English word sets based on a specified word length and a set of i
 ## **Usage:**
 
 Run the following command from your terminal (Unix-like systems (Mac, Linux, etc.):
-
+If installed manually, or with a GitHub clone, it can be started with the command.
 ```bash
-python3 English_word_generator.py
+python3 main.py
+```
+If installed as a package, you can simply run the anagrams command
+```bash
+anagrams
 ```
 
 A simple interactive menu will appear:
 
-Generate words
+Select Game
 
 View history
 
 Delete history
 
+Help
+
+About
+
 Exit application
 
+At the moment only the Anagram Generator game is available.
 When generating words, simply enter the word length and a character set.
-
 The CLI will return all valid matches from words.txt.
-
 The history consists of all the word length and character set entries entered as input and their corresponding output. Across all sessions, it is automatically saved and can also be deleted.
 
 ---
@@ -45,55 +54,63 @@ The history consists of all the word length and character set entries entered as
 .
 ├── LICENSE
 ├── README.md
-├── config
-│ └── config
-├── data
-│ └── data
-├── logs
-│ └── log
+├── main.py
 ├── pyproject.toml
-├── requirements.txt
 ├── scripts
-│ └── automation.py
-├── setup.py
+│   └── automation.py
 ├── src
-│ └── project
-│ ├── __init__.py
-│ ├── cli.py
-│ ├── core.py
-│ ├── main.py
-│ ├── project_data
-│ │ └── words.txt
-│ └── utils.py
-└── tests 
-└── tests.py
+│   └── word_game_solver
+│       ├── __init__.py
+│       ├── about
+│       │   ├── LICENSE
+│       │   └── README.md
+│       ├── cli.py
+│       ├── config
+│       │   └── config
+│       ├── core.py
+│       ├── help
+│       │   └── help
+│       ├── logs
+│       │   └── log
+│       ├── scripts
+│       │   └── script.py
+│       ├── user_history
+│       │   └── history
+│       ├── utils.py
+│       └── word_files
+│           └── english_words.txt
+├── tests
+│   └── tests.py
 
 ---
 
 ## **Visual example of the CLI application in action:**
 
+Word Game Solver
 Welcome: user
-Date: 07-29-25 22:01:06
+Date: 2025-08-02 Hours: 18:48:23
 
+Word Game Solver
 Options:
-Generate words:..........1
-View history:...............2
-Delete history:..........3
-Exit the CLI application:...4
-Select an option: 1
+Select game:................0
+View history:...............1
+Delete history:.............2
+Help:.......................3
+About:......................4
+Exit the CLI application:...5
+Select an option: 0
 
+Word Game Solver
+Games:
+Anagram Generator...1
+Exit................2
+Select an Game: 1
+
+Anagram Generator
 Enter the length of the word to guess: 5
-Enter all available letters: nyogbsfo
-Number of possible words: 6
-Possible words: bongo bongs boons goofs goofy goons
-
-Options:
-Generate words:.............1
-View history:...............2
-Delete history:.............3
-Exit the CLI application:...4
-Select an option: 4
-Exit...
+Enter all available letters: dhsfutsomfahd
+Number of possible words: 39
+Possible words: atoms moats autos dados datum doffs dusts studs fasts foams hafts shaft hosts shots huffs masts moths mouth muffs musts smuts oaths ousts shads shahs shams smash shout south thous shush shuts sodas sofas staff stash stuff thuds toads
 
 ---
 
