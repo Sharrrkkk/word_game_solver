@@ -6,6 +6,7 @@ tmp/
 *.swp
 ideas/
 dist/
-Anagrams*
+*workspace*
 testing.py
-setup.py
+etup.py
+requirements.txt

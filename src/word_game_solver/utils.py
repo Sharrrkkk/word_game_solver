@@ -6,7 +6,8 @@ import getpass
 import datetime
 
 
-__all__: list[str] = ["clean_console", "username", "user_datetime", "all_paths", "Logs"]
+__all__: list[str] = ["clean_console", "username", "user_datetime", "all_paths", 
+                      "Logs", "UserHistory", "Parsing", "user_help", "about"]
 
 
 def clean_console()-> int:
@@ -46,16 +47,18 @@ def all_paths(get_path: str)-> Path:
     user_history_path: Path = project_base_path / "user_history"
     logs_path: Path = project_base_path / "logs"
     scripts_path: Path = project_base_path / "scripts"
-    project_data_path: Path = project_base_path / "word_files" / "english_words.txt"
+    project_data_path: Path = project_base_path / "word_files"
     help_path: Path = project_base_path / "help"
+    about_path: Path = project_base_path / "about" 
 
     paths: dict[str, Path] = {"base":project_base_path,
-             "config":config_path, 
-             "history":user_history_path, 
-             "logs":logs_path, 
-             "scripts":scripts_path, 
-             "project_data":project_data_path, 
-             "help":help_path
+             "config": config_path, 
+             "history": user_history_path, 
+             "logs": logs_path, 
+             "scripts": scripts_path, 
+             "project_data": project_data_path, 
+             "help": help_path,
+             "about": about_path
              }
     
     try:
@@ -76,7 +79,7 @@ class Logs:
         with open(file_logs_path, "a") as file_logs:
             file_logs.write(f"{username()}")
             file_logs.write(f"{user_datetime()}")
-            file_logs.write(f"Starting CLI application...\n")
+            file_logs.write(f"\nStarting CLI application...\n")
             file_logs.write(f"Console Cleaning: True\n")
 
     @staticmethod
@@ -88,14 +91,16 @@ class Logs:
         with open(file_logs_path, "a") as file_logs:
             match option:
                 case "0":
-                    record = f"Revised help.\n"
-                case "1":
                     record = f"{result}\n"
-                case "2":
+                case "1":
                     record = f"History viewed.\n"
-                case "3":
+                case "2":
                     record = f"History deleted.\n"
+                case "3":
+                    record = f"Revised Help\n"
                 case "4":
+                    record = f"Revised About\n"
+                case "5":
                     record = f"Exit...\n"
                 case _:
                     record = f"Invalid option.\n"
@@ -151,6 +156,9 @@ class Parsing:
     @staticmethod
     def string(string: str)-> tuple[str, bool]:
         cache: str = ''.join(string.strip(" \n").split()).lower()
+        size = len(cache)
+        if size == 0 or size == 1:
+            return (string, False)
         for char in cache:
             if not char.isalpha():
                 return (string, False)
@@ -160,6 +168,11 @@ class Parsing:
 def user_help()-> None:
     help_file: Path = all_paths("help") / "help"
     subprocess.run(["nano", "-v", help_file])
+
+
+def about()-> None:
+    about_file: Path = all_paths("about") / "README.md"
+    subprocess.run(["nano", "-v", about_file])
 
 
 if __name__ == "__main__":

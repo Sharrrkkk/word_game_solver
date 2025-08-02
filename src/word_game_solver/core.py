@@ -36,7 +36,7 @@ def data_analysis(file: dict[str, list[str]], data: tuple[int, str])-> str:
 
 
 def anagram_generator(n: int, letters: str)-> str:
-    etl: dict[str, list[str]] = extract_transform_load(utils.all_paths("project_data"), "r")
+    etl: dict[str, list[str]] = extract_transform_load(utils.all_paths("project_data") / "english_words.txt", "r")
     result: str = data_analysis(etl, (n, letters))
     return result
 
