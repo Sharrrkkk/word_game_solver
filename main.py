@@ -1,5 +1,6 @@
 from src import word_game_solver
 
+
 __all__: list[str] = ["main"]
 
 

@@ -1,42 +1,82 @@
-from . import core
-from . import utils
+if __name__ != "__main__":
+    from . import wordfinder
+    from . import utils
+
+
+"""
+User interface module.
+
+This module is the only one that communicates with the user. It is the
+complete interface for this application. It imports the utils methods,
+and in this case, the Wordfinder game method. Each game solver will have
+its own module.
+This module will contain the minimum logic necessary for the interface and
+will be kept as clean as possible. It will rely on reusable functions external
+to the utils module.
+All game solver logic will have its own separate, completely autonomous module.
+This module will contain two main interfaces: the main module and the game 
+selection module. Each game will then have its own interface for data input
+and output. The game selection interface will be responsible for connecting
+inputs, processing, and outputs. Each interface will also have its own
+responsibility for displaying data to the console, saving logs, and keeping
+history, always calling external functions.
+"""
 
 
 __all__: list[str] = ["run_cli"]
 
 
-class AnagramGenerator:
+class WordFinderCLI:
+    """
+    Word Finder Interface.
+
+    This class and its modules are specifically created to be the input
+    and output data interface for this game solver. It is responsible
+    for capturing input data, and displaying the data on the console as
+    output, and saving the user log and history.
+    """
     @staticmethod
-    def input_data()-> tuple[str, str]:
+    def word_finder_input()-> tuple[str, str]:
+        """
+        Word Finder User Interface, For input data.
+
+        Args:
+            None
+
+        Returns:
+            tuple
+                str: Length of the words to search for.
+                str: Letters that must contain the words to search for, they
+                    do not have to be all the letters, they can be combinations of some of them.
+        """
         print(f"\nAnagram Generator")
         word_length: str = input(f"Enter the length of the word to guess: ")
         available_letters: str = input(f"Enter all available letters: ")
         return (word_length, available_letters)
-
-    @staticmethod
-    def anagram_generator(word_length: str, available_letters: str)-> tuple[bool, str]:
-        parsing_word_length: str
-        status_length: bool
-        parsing_word_length, status_length = utils.Parsing.numbers(word_length)
-
-        parsing_available_letters: str
-        status_letters: bool
-        parsing_available_letters, status_letters = utils.Parsing.string(available_letters)
-
-        status: list[bool] = [status_length, status_letters]
-        matches: str
-        if sum(status) == 2:
-            int_word_length = int(parsing_word_length)
-            return (True, core.anagram_generator(int_word_length, parsing_available_letters)) 
-        else:
-            incorrect_entries: str = "Both entries are incorrect, please read the help."
-            incorrect_length: str = "The length entered is incorrect, please read the help."
-            incorrect_letters: str = "the letter set is incorrect, please read the help."
-            matches = f"{incorrect_entries if (sum(status)==0) else(incorrect_length) if(status[0]==0) else(incorrect_letters)}"
-            return (False, matches)
     
     @staticmethod
-    def output_data(length: str, letters: str, status: bool, result: str)-> None:
+    def word_finder_output(length: str, letters: str, status: bool, result: str)-> None:
+        """
+        Word Finder User Interface, For output data.
+
+        This method will build and send the output information to the 
+        different possible outputs, by console, user history, log, Always
+        open an output by console and by log, the output for user history
+        will only exist if the input data is correct and generated a result
+        of words in the output or simply there were no matches.
+
+        Args:
+            length (str): Required length of the searched words.
+            letters (str): Letters or combinations of letters that the 
+                searched words must have.
+            status (bool): Indicates whether the input data was correct or not.
+            result (str): If the status is True, it will generate the words
+                found or indicate that there are no matches. If it is False,
+                it will indicate why the entry failed.
+
+        Returns:
+            None
+        """
         if status:
             size: int = len(result.split())
             matches: str = result if (result!='') else ('No matches')
@@ -50,10 +90,26 @@ class AnagramGenerator:
 
 
 def word_game_solver()-> None:
+    """
+    Game selection interface
+
+    Here you select games, and some of the available options are displayed
+    in the console and saved to the registry. The selected game has its own
+    interface for input and output data; the processing logic is separated
+    into a dedicated module for game logic. This interface, in turn, serves
+    as a data controller/pipeline between the input, processing, and output
+    of the selected game.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     while True:
         print(f"\nWord Game Solver")
         print(f"Games:")
-        print(f"Anagram Generator...1")
+        print(f"Word Finder...1")
         print(f"Exit................2")
         game: str = input(f"Select an Game: ")
 
@@ -61,11 +117,11 @@ def word_game_solver()-> None:
             case '1':
                 word_length: str
                 available_letters: str
-                word_length, available_letters = AnagramGenerator.input_data()
+                word_length, available_letters = WordFinderCLI.word_finder_input()
                 status: bool
                 result: str
-                status, result = AnagramGenerator.anagram_generator(word_length, available_letters)
-                AnagramGenerator.output_data(word_length, available_letters, status, result)
+                status, result = wordfinder.WordFinder.word_finder(word_length, available_letters)
+                WordFinderCLI.word_finder_output(word_length, available_letters, status, result)
             case '2':
                 print("exit..." + "\n")
                 utils.Logs.history_log("0", "exit...")
@@ -76,6 +132,21 @@ def word_game_solver()-> None:
         
 
 def run_cli()-> None:
+    """
+    Main user interface.
+
+    This is the main menu of the user interface, from here the main options
+    are displayed, and welcome data is shown, from here the entire main user
+    interface is managed and is shown in the console and saved in the log,
+    the only option that is not managed from here is the game selection
+    interface that has its own separate interface.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
 
     utils.clean_console()
 
@@ -129,4 +200,16 @@ def run_cli()-> None:
 
 
 if __name__ == "__main__":
-    run_cli()
+    """
+    Test
+
+    Here we import the test module and run the tests contained in the
+    docstring, specifically in 'Examples:'
+    Other modules are also imported with the absolute paths that are
+    required when importing this module directly.
+    """
+    import wordfinder
+    import utils
+    import doctest
+    doctest.testmod(verbose=True)
+    #run_cli()

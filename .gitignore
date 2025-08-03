@@ -9,4 +9,5 @@ dist/
 *workspace*
 testing.py
 etup.py
-requirements.txt
+*requirements.txt
+core.txt

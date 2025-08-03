@@ -7,7 +7,7 @@ This consists of searching for all possible words from a desired length and a se
 
 ## **Features:**
 
-# Anagram generator
+### Anagram generator
 - Input a desired word length (e.g., `5`)
 - Provide a set of characters (e.g., `"nyogbsfo"`)
 - Generate all valid English words (e.g., `bongo`, `bongs`, `boons`, etc.)
