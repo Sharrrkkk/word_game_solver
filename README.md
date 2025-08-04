@@ -40,15 +40,18 @@ python3 main.py
 ```
 
 **For Windows systems (PowerShell or CMD):**
-powershell
+```
 py main.py
+```
 
-If installed as a package, you can run the following command on both Unix-like and Windows systems:
+**If installed as a package, you can run the following command on both Unix-like and Windows systems:**
 
+```
 wordfinder
+```
 
 A simple interactive menu will appear:
-
+```
 Options:
 Select game:................0
 View history:...............1
@@ -57,7 +60,7 @@ Help:.......................3
 About:......................4
 Exit the CLI application:...5
 Select an option:
-
+```
 Choosing the Select game option opens a submenu where you can select the desired game solver or exit.
 Currently, only the Word Finder game is available.
 Simply enter the length of the words to search for and a set of letters from which those words can be formed.
@@ -69,6 +72,7 @@ This data is saved across sessions and can be deleted at any time via the menu.
 
 ## **Project Structure**
 
+```
 .
 ├── LICENSE
 ├── README.md
@@ -89,11 +93,13 @@ This data is saved across sessions and can be deleted at any time via the menu.
 │       ├── word_files
 │       │   └── english_words.txt
 │       └── wordfinder.py
+```
 
 ---
 
 ## **Example Output (CLI in Action)**
 
+```
 Word Game Solver
 Welcome: user
 Date: 2025-08-04 Time: 10:34:00
@@ -117,6 +123,7 @@ Enter the length of the word to guess: 5
 Enter all available letters: nyogbsfo
 Number of possible words: 6
 Possible words: bongo bongs boons goofs goofy goons
+```
 
 ---
 
