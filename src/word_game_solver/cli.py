@@ -49,7 +49,7 @@ class WordFinderCLI:
                 str: Letters that must contain the words to search for, they
                     do not have to be all the letters, they can be combinations of some of them.
         """
-        print(f"\nAnagram Generator")
+        print(f"\nWord Finder")
         word_length: str = input(f"Enter the length of the word to guess: ")
         available_letters: str = input(f"Enter all available letters: ")
         return (word_length, available_letters)
