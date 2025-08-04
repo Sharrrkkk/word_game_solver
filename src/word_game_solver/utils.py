@@ -89,22 +89,20 @@ def all_paths(get_path: str)-> Path:
         result (Path): Path found in the dict based on the keyword.
     """
     project_base_path: Path = pathlib.Path(__file__).resolve().parent
-    config_path: Path = project_base_path / "config"
-    user_history_path: Path = project_base_path / "user_history"
-    logs_path: Path = project_base_path / "logs"
-    scripts_path: Path = project_base_path / "scripts"
+    user_history_path: Path = project_base_path / "info"
+    logs_path: Path = project_base_path / "info"
     project_data_path: Path = project_base_path / "word_files"
-    help_path: Path = project_base_path / "help"
-    about_path: Path = project_base_path / "about" 
+    help_path: Path = project_base_path / "info"
+    about_path: Path = project_base_path / "info"
+    license_path: Path = project_base_path / "info" 
 
     paths: dict[str, Path] = {"base":project_base_path,
-             "config": config_path, 
              "history": user_history_path, 
              "logs": logs_path, 
-             "scripts": scripts_path, 
              "project_data": project_data_path, 
              "help": help_path,
-             "about": about_path
+             "about": about_path,
+             "license": license_path
              }
     
     try:

@@ -11,7 +11,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 authors = [{name = "Sharrrkkk"}]
 maintainers = [{name = "Sharrrkkk"}]
-keywords = ["anagram", "anagrams", "game", "generate", "word", "words"]
+keywords = ["anagram", "anagrams", "game", "generate", "word", "words", "solver", "finder"]
 dependencies = []
 requires-python = ">= 3.10"
 classifiers = [
@@ -28,7 +28,7 @@ Repository = "https://github.com/Sharrrkkk/word_game_solver"
 Issues = "https://github.com/Sharrrkkk/word_game_solver/issues"
 
 [project.scripts]
-anagrams = "word_game_solver.cli:run_cli"
+wordfinder = "word_game_solver.cli:run_cli"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -37,5 +37,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-word_game_solver = ["word_files/*", "config/*", "help/*", "logs/*", "scripts/*", "user_history/*",
-                    "about/*"]
+word_game_solver = ["word_files/*", "info/*"]
