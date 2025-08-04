@@ -133,3 +133,5 @@ Only simple alphabetic characters (A–Z, a–z) are currently supported—no ac
 This project is intended 100% for educational purposes.
 
 It is fully compatible with Unix-like systems (GNU/Linux, macOS, etc.) and Windows.
+
+---
