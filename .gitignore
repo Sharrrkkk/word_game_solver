@@ -1,13 +1,8 @@
 __pycache__/
 .vscode/
-tmp/
 *.env
-*.tmp
-*.swp
 ideas/
 dist/
 *workspace*
-testing.py
-etup.py
-*requirements.txt
 core.txt
+fiddling_with_things
