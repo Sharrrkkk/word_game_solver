@@ -113,6 +113,18 @@ def all_paths(get_path: str)-> Path:
     return result
 
 
+def open_file_os(file_path: Path):
+    operating_system: str = platform.system()
+    if operating_system == "Linux":
+        subprocess.run(["nano", "-v", file_path])
+    elif operating_system == "Windows":
+        subprocess.run(["powershell", "Start-Process", file_path, "-Wait"])
+    elif operating_system == "Darwin":
+        subprocess.run(["nano", "-v", file_path])
+    else:
+        subprocess.run(["nano", "-v", file_path])
+
+
 class Logs:
     """
     Build and save user records.
@@ -271,7 +283,7 @@ class UserHistory:
             None
         """
         user_history_file_path: Path = all_paths("history") / "history.txt"
-        subprocess.run(["nano", "-v", user_history_file_path])
+        open_file_os(user_history_file_path)
 
     @staticmethod
     def delete_history()-> None:
@@ -303,7 +315,7 @@ def user_help()-> None:
         None
     """
     help_file: Path = all_paths("help") / "help.md"
-    subprocess.run(["nano", "-v", help_file])
+    open_file_os(help_file)
 
 
 def about()-> None:
@@ -320,15 +332,8 @@ def about()-> None:
         None
     """
     about_file: Path = all_paths("about") / "about.txt"
-    operating_system = platform.system()
-    if operating_system == "Linux":
-        subprocess.run(["nano", "-v", about_file])
-    elif operating_system == "Windows":
-        os.startfile(about_file)
-    elif operating_system == "Darwin":
-        subprocess.run(["nano", "-v", about_file])
-    else:
-        subprocess.run(["nano", "-v", about_file])
+    open_file_os(about_file)
+    
     
 
 if __name__ == "__main__":
