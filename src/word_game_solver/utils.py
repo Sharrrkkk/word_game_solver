@@ -4,6 +4,7 @@ from pathlib import Path
 import subprocess
 import getpass
 import datetime
+import platform
 
 
 """
@@ -319,8 +320,16 @@ def about()-> None:
         None
     """
     about_file: Path = all_paths("about") / "about.txt"
-    subprocess.run(["nano", "-v", about_file])
-
+    operating_system = platform.system()
+    if operating_system == "Linux":
+        subprocess.run(["nano", "-v", about_file])
+    elif operating_system == "Windows":
+        os.startfile(about_file)
+    elif operating_system == "Darwin":
+        subprocess.run(["nano", "-v", about_file])
+    else:
+        subprocess.run(["nano", "-v", about_file])
+    
 
 if __name__ == "__main__":
     """
