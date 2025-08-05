@@ -113,14 +113,29 @@ def all_paths(get_path: str)-> Path:
     return result
 
 
-def open_file_os(file_path: Path)-> None:
+def open_file_with_editor(file_path: Path)-> None:
+    """
+    Open files in the text editor.
+
+    In the case of Unix-type systems, it will open the file in the nano
+    console text editor, which is almost always available. In the case
+    of Windows, it will open with the GUI notepad text editor, which is
+    usually available. In the case of Nano, it is mandatory to close it
+    to continue with the application. In the case of Windows, it is also
+    mandatory but not as intuitive, which is why the console indicates
+    that it must be closed before continuing.
+
+    Args:
+        file_path (Path): The full path of the file to be opened.
+
+    Returns:
+        None
+    """
     operating_system: str = platform.system()
     if operating_system == "Linux":
         subprocess.run(["nano", "-v", file_path])
     elif operating_system == "Windows":
-        subprocess.run(["powershell",
-                        "-Command",
-                        f"Start-Process -FilePath '{file_path}' -Wait"])
+        subprocess.run(["notepad", file_path])
     elif operating_system == "Darwin":
         subprocess.run(["nano", "-v", file_path])
     else:
@@ -285,7 +300,7 @@ class UserHistory:
             None
         """
         user_history_file_path: Path = all_paths("history") / "history.txt"
-        open_file_os(user_history_file_path)
+        open_file_with_editor(user_history_file_path)
 
     @staticmethod
     def delete_history()-> None:
@@ -317,7 +332,7 @@ def user_help()-> None:
         None
     """
     help_file: Path = all_paths("help") / "help.md"
-    open_file_os(help_file)
+    open_file_with_editor(help_file)
 
 
 def about()-> None:
@@ -334,7 +349,7 @@ def about()-> None:
         None
     """
     about_file: Path = all_paths("about") / "about.txt"
-    open_file_os(about_file)
+    open_file_with_editor(about_file)
     
     
 

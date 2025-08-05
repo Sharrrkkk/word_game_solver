@@ -151,7 +151,7 @@ def run_cli()-> None:
         None
     """
 
-    #utils.clean_console()
+    utils.clean_console()
 
     print(f"Word Game Solver")
 
@@ -179,22 +179,22 @@ def run_cli()-> None:
                 word_game_solver()
                 continue
             case "1":
-                utils.UserHistory.read_history()
                 if os.name == "nt":
                     print("Close the file to continue...")
+                utils.UserHistory.read_history()
                 print(f"History viewed\n")
             case "2":
                 utils.UserHistory.delete_history()
                 print(f"History deleted\n")
             case "3":
-                utils.user_help()
                 if os.name == "nt":
                     print("Close the file to continue...")
+                utils.user_help()
                 print(f"Revised Help\n")
             case "4":
-                utils.about()
                 if os.name == "nt":
                     print("Close the file to continue...")
+                utils.about()
                 print(f"Revised About\n")
             case "5":
                 print(f"Exit...")
