@@ -15,7 +15,7 @@ keywords = ["anagram", "anagrams", "game", "generate", "word", "words", "solver"
 dependencies = []
 requires-python = ">= 3.10"
 classifiers = [
-    "Development Status :: 3 - alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
     "Programming Language :: Python"

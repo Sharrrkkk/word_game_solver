@@ -205,13 +205,13 @@ class WordFinder:
         that anagram of the key.
 
         Args:
-            file (dict[str, list[str]]): Dict prepared with all the 
-                necessary information to perform the required searches,
-                according to the input conditions, each key is an ordered
-                word, its value is a list containing the original word that
-                formed the key word, and if there are more words that are
-                anagrams, they are saved in the same key and all are in 
-                the value word list.
+            file (dict[str, list[str]]): A dictionary prepared with all
+            the information necessary to perform the required searches.
+            Depending on the input conditions, each key is a word sorted
+            alphabetically, and its value is a list containing the original
+            word that formed the keyword. If there are other words that are
+            anagrams of the key, they are stored in their original versions
+            in the same word list as the value of that key.
             tuple
                 n (int): Integer of the length of words to search for.
                 word (str): string of letters that must contain the words 
@@ -291,6 +291,7 @@ class WordFinder:
         
 
 if __name__ == "__main__":
-    #Testing
+    """
+    """
     import doctest
     doctest.testmod(verbose=True)

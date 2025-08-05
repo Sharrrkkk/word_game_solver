@@ -4,22 +4,23 @@ if __name__ != "__main__":
 
 
 """
-User interface module.
+User Interface Module.
 
-This module is the only one that communicates with the user. It is the
-complete interface for this application. It imports the utils methods,
-and in this case, the Wordfinder game method. Each game solver will have
-its own module.
-This module will contain the minimum logic necessary for the interface and
-will be kept as clean as possible. It will rely on reusable functions external
-to the utils module.
-All game solver logic will have its own separate, completely autonomous module.
-This module will contain two main interfaces: the main module and the game 
-selection module. Each game will then have its own interface for data input
-and output. The game selection interface will be responsible for connecting
-inputs, processing, and outputs. Each interface will also have its own
-responsibility for displaying data to the console, saving logs, and keeping
-history, always calling external functions.
+This module is the only one that communicates with the user. It constitutes
+the complete interface for this application. It imports the utils modules and,
+in this case, the Wordfinder game module. Each game solver will have its own
+module.
+This module will contain the minimum logic needed for the interface and will
+be kept as clean as possible. It will be based on external reusable functions
+like those in the utils module.
+All the game solver logic will have its own independent and completely
+autonomous module.
+This module will contain three main interfaces: the main interface, the game
+selection interface, and each game's interface. Each game will have its own
+interface for data input and output. The game selection interface will be
+responsible for connecting inputs, processing, and outputs. Each interface
+will also be responsible for displaying data in the console, saving logs,
+and maintaining history, always invoking external functions.
 """
 
 
@@ -111,7 +112,7 @@ def word_game_solver()-> None:
         print(f"Games:")
         print(f"Word Finder...1")
         print(f"Exit................2")
-        game: str = input(f"Select an Game: ")
+        game: str = input(f"Select a Game: ")
 
         match game:
             case '1':
@@ -148,7 +149,7 @@ def run_cli()-> None:
         None
     """
 
-    utils.clean_console()
+    #utils.clean_console()
 
     print(f"Word Game Solver")
 
@@ -210,6 +211,6 @@ if __name__ == "__main__":
     """
     import wordfinder
     import utils
-    import doctest
-    doctest.testmod(verbose=True)
-    #run_cli()
+    #import doctest
+    #doctest.testmod(verbose=True)
+    run_cli()
