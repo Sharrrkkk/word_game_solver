@@ -1,3 +1,5 @@
+import os
+
 if __name__ != "__main__":
     from . import wordfinder
     from . import utils
@@ -178,15 +180,21 @@ def run_cli()-> None:
                 continue
             case "1":
                 utils.UserHistory.read_history()
+                if os.name == "nt":
+                    print("Close the file to continue...")
                 print(f"History viewed\n")
             case "2":
                 utils.UserHistory.delete_history()
                 print(f"History deleted\n")
             case "3":
                 utils.user_help()
+                if os.name == "nt":
+                    print("Close the file to continue...")
                 print(f"Revised Help\n")
             case "4":
                 utils.about()
+                if os.name == "nt":
+                    print("Close the file to continue...")
                 print(f"Revised About\n")
             case "5":
                 print(f"Exit...")

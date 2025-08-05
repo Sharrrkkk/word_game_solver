@@ -113,12 +113,14 @@ def all_paths(get_path: str)-> Path:
     return result
 
 
-def open_file_os(file_path: Path):
+def open_file_os(file_path: Path)-> None:
     operating_system: str = platform.system()
     if operating_system == "Linux":
         subprocess.run(["nano", "-v", file_path])
     elif operating_system == "Windows":
-        subprocess.run(["powershell", "Start-Process", file_path, "-Wait"])
+        subprocess.run(["powershell",
+                        "-Command",
+                        f"Start-Process -FilePath '{file_path}' -Wait"])
     elif operating_system == "Darwin":
         subprocess.run(["nano", "-v", file_path])
     else:
