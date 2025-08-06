@@ -217,8 +217,8 @@ if __name__ == "__main__":
     Other modules are also imported with the absolute paths that are
     required when importing this module directly.
     """
-    import wordfinder
-    import utils
+    #import wordfinder
+    #import utils
     #import doctest
     #doctest.testmod(verbose=True)
     run_cli()

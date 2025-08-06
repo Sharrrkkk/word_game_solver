@@ -5,6 +5,15 @@ __all__: list[str] = ["main"]
 
 
 def main()-> None:
+    """
+    Run the CLI application launcher.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     word_game_solver.cli.run_cli()
 
 
