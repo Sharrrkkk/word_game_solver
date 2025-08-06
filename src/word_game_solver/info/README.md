@@ -80,15 +80,16 @@ This data is saved across sessions and can be deleted at any time via the menu.
 ├── pyproject.toml
 ├── src
 │   └── word_game_solver
+│       ├── __about__.py
 │       ├── __init__.py
 │       ├── cli.py
 │       ├── info
 │       │   ├── LICENSE
 │       │   ├── README.md
-│       │   ├── help
-│       │   ├── history
-│       │   └── log
-│       ├── script.py
+│       │   ├── about.txt
+│       │   ├── help.md
+│       │   ├── history.txt
+│       │   └── log.txt
 │       ├── utils.py
 │       ├── word_files
 │       │   └── english_words.txt
