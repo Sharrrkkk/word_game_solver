@@ -6,3 +6,9 @@ dist/
 *workspace*
 fiddling_with_things/
 spanish/
+lib/
+*lib64*
+bin/
+pyvenv.cfg
+include/
+**egg**

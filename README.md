@@ -30,6 +30,24 @@ User inputs are stored, cleaned, verified, processed, and stored again. In the c
 
 ---
 
+## **Installation**
+
+**This project is available on PYPI.**
+### **Link:**
+`https://pypi.org/project/word-game-solver/`
+
+Install it from pip with the following command:
+
+`pip install word-game-solver`
+
+**Note:**
+- It can be installed globally without a virtual environment, as the project has no external dependencies. The wordfinder command remains global, allowing you to use the application without having to activate the virtual environment every time you use it.
+- If you want to create a virtual environment, activate it, and install it from there, then use the command only when that environment is activated, this is also an option. You can even run the interface directly without having to activate the virtual environment.
+
+You can clone the project or download it, both from GitHub, and then run main.py manually.
+
+---
+
 ## **Usage**
 
 If installed manually (by cloning from GitHub or downloading the project), it can be started from the project root with the following command:
